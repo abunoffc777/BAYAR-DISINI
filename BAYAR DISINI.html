@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYMENT ABUNOFFC777</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --dark: #1A1A2E;
+            --light: #F5F5F5;
+            --success: #2ECC71;
+            --warning: #F39C12;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-dark: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1A1A2E, #16213E, #0F3460, #533483);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark), #0F3460);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 1s ease, opacity 1s ease;
+        }
+
+        .welcome-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+            animation: welcomeFadeIn 1.5s ease;
+        }
+
+        @keyframes welcomeFadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-logo {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .enter-btn {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.5);
+            font-weight: 600;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.7);
+        }
+
+        /* Main Content */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .payment-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: cardFloat 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(0.5deg); }
+            50% { transform: translateY(-10px) rotate(-0.5deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .payment-method {
+            background: var(--glass-dark);
+            border-radius: 18px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .payment-method:hover::before {
+            left: 100%;
+        }
+
+        .payment-method:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .payment-method.active {
+            background: rgba(108, 99, 255, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 25px rgba(108, 99, 255, 0.4);
+        }
+
+        .payment-icon {
+            font-size: 3rem;
+            margin-right: 20px;
+            width: 70px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-method:hover .payment-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .payment-details p {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .copy-btn {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.6);
+        }
+
+        .copy-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Overlay untuk nomor pembayaran */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .overlay-content {
+            background: linear-gradient(135deg, var(--dark), #0F3460);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .overlay.active .overlay-content {
+            transform: scale(1);
+        }
+
+        .overlay-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .overlay-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .overlay-number {
+            font-size: 2.5rem;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 2px dashed var(--primary);
+        }
+
+        .overlay-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .overlay-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .overlay-btn.copy {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            flex: 2;
+        }
+
+        .overlay-btn.close {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            flex: 1;
+        }
+
+        .overlay-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .qris-container {
+            text-align: center;
+            margin-top: 20px;
+            padding: 25px;
+            background: var(--glass-dark);
+            border-radius: 18px;
+            display: none;
+            animation: slideDown 0.5s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .qris-container img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .qris-container img:hover {
+            transform: scale(1.03);
+        }
+
+        .instructions {
+            margin-top: 40px;
+            padding: 25px;
+            background: var(--glass-dark);
+            border-radius: 18px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-weight: 300;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .instructions li::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 18px 28px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--success);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg) scale(1); }
+            33% { transform: translateY(-30px) rotate(120deg) scale(1.1); }
+            66% { transform: translateY(20px) rotate(240deg) scale(0.9); }
+            100% { transform: translateY(0) rotate(360deg) scale(1); }
+        }
+
+        .payment-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(to right, var(--secondary), var(--warning));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 101, 132, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .security-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-card {
+                max-width: 100%;
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .payment-method {
+                padding: 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .notification {
+                top: 20px;
+                right: 20px;
+                left: 20px;
+            }
+            
+            .overlay-content {
+                padding: 30px 20px;
+            }
+            
+            .overlay-number {
+                font-size: 1.8rem;
+                padding: 15px;
+            }
+            
+            .overlay-buttons {
+                flex-direction: column;
+            }
+            
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-logo {
+                font-size: 4rem;
+            }
+        }
+
+        /* Animasi teks berjalan */
+        .marquee {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 30px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .marquee p {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            line-height: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            transform: translateX(100%);
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+            <div class="welcome-logo">
+                <i class="fas fa-cash-register"></i>
+            </div>
+            <h1 class="welcome-title">WELCOME PAYMENT ABUENOFFC777</h1>
+            <p class="welcome-subtitle">Pembayaran Mudah, Cepat, dan Aman</p>
+            <button class="enter-btn" id="enterBtn">MASUK KE PEMBAYARAN</button>
+        </div>
+    </div>
+
+    <!-- Overlay untuk nomor pembayaran -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <div class="overlay-icon" id="overlayIcon">
+                <i class="fab fa-cc-visa"></i>
+            </div>
+            <h2 class="overlay-title" id="overlayTitle">DANA</h2>
+            <p>Salin nomor berikut untuk melakukan pembayaran:</p>
+            <div class="overlay-number" id="overlayNumber">0881022801831</div>
+            <div class="overlay-buttons">
+                <button class="overlay-btn copy" id="overlayCopyBtn">
+                    <i class="fas fa-copy"></i> Salin Nomor
+                </button>
+                <button class="overlay-btn close" id="overlayCloseBtn">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-elements">
+        <!-- Floating elements akan di-generate oleh JavaScript -->
+    </div>
+    
+    <div class="container" id="mainContainer">
+        <div class="payment-card">
+            <div class="payment-badge">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            
+            <div class="header">
+                <h1><i class="fas fa-cash-register"></i> PAYMENT GATEWAY</h1>
+                <p>Pembayaran Mudah, Cepat, dan Aman</p>
+            </div>
+            
+            <div class="payment-options">
+                <div class="payment-method active" data-method="dana" data-number="0881022801831">
+                    <div class="payment-icon">
+                        <i class="fab fa-cc-visa" style="color: #00a3e0;"></i>
+                    </div>
+                    <div class="payment-details">
+                        <h3>DANA</h3>
+                        <p>Klik untuk melihat nomor pembayaran</p>
+                    </div>
+                    <button class="copy-btn show-overlay-btn">
+                        <i class="fas fa-eye"></i> Lihat
+                    </button>
+                </div>
+                
+                <div class="payment-method" data-method="gopay" data-number="08812241621">
+                    <div class="payment-icon">
+                        <i class="fab fa-cc-mastercard" style="color: #00a64f;"></i>
+                    </div>
+                    <div class="payment-details">
+                        <h3>GoPay</h3>
+                        <p>Klik untuk melihat nomor pembayaran</p>
+                    </div>
+                    <button class="copy-btn show-overlay-btn">
+                        <i class="fas fa-eye"></i> Lihat
+                    </button>
+                </div>
+                
+                <div class="payment-method" data-method="qris">
+                    <div class="payment-icon">
+                        <i class="fas fa-qrcode" style="color: #ff6b6b;"></i>
+                    </div>
+                    <div class="payment-details">
+                        <h3>QRIS</h3>
+                        <p>Scan kode QR untuk pembayaran</p>
+                    </div>
+                    <button class="copy-btn" data-text="https://files.catbox.moe/zveaxz.jpg">
+                        <i class="fas fa-external-link-alt"></i> Buka
+                    </button>
+                </div>
+            </div>
+            
+            <div class="qris-container" id="qrisContainer">
+                <h3><i class="fas fa-qrcode"></i> QRIS Payment</h3>
+                <img src="https://files.catbox.moe/zveaxz.jpg" alt="QR Code">
+                <p>Scan kode QR di atas untuk melakukan pembayaran</p>
+            </div>
+            
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> Petunjuk Pembayaran</h3>
+                <ol>
+                    <li>Pilih metode pembayaran yang diinginkan</li>
+                    <li>Klik "Lihat" untuk menampilkan nomor pembayaran</li>
+                    <li>Salin nomor atau scan QR code</li>
+                    <li>Lakukan pembayaran melalui aplikasi yang sesuai</li>
+                    <li>Simpan bukti pembayaran untuk konfirmasi</li>
+                </ol>
+            </div>
+            
+            <div class="security-info">
+                <i class="fas fa-lock"></i>
+                <span>Transaksi Anda dilindungi dengan enkripsi SSL</span>
+            </div>
+            
+            <div class="marquee">
+                <p>⚠️ Hati-hati terhadap penipuan! Pastikan Anda melakukan pembayaran ke nomor yang tertera di atas.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Teks berhasil disalin!</span>
+    </div>
+
+    <script>
+        // Animasi elemen mengambang yang lebih kompleks
+        const floatingElements = document.querySelector('.floating-elements');
+        const colors = ['rgba(108, 99, 255, 0.1)', 'rgba(255, 101, 132, 0.1)', 'rgba(54, 209, 220, 0.1)'];
+        
+        for (let i = 0; i < 20; i++) {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            
+            // Random size dan position
+            const size = Math.random() * 120 + 30;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.left = `${Math.random() * 100}%`;
+            element.style.top = `${Math.random() * 100}%`;
+            
+            // Random color
+            element.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random animation duration dan delay
+            element.style.animationDuration = `${Math.random() * 30 + 15}s`;
+            element.style.animationDelay = `${Math.random() * 5}s`;
+            
+            floatingElements.appendChild(element);
+        }
+        
+        // Welcome Screen Logic
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const enterBtn = document.getElementById('enterBtn');
+        const mainContainer = document.getElementById('mainContainer');
+        
+        enterBtn.addEventListener('click', function() {
+            welcomeScreen.style.transform = 'translateY(-100%)';
+            welcomeScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                mainContainer.classList.add('show');
+            }, 1000);
+        });
+        
+        // Overlay Logic
+        const overlay = document.getElementById('overlay');
+        const overlayIcon = document.getElementById('overlayIcon');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlayNumber = document.getElementById('overlayNumber');
+        const overlayCopyBtn = document.getElementById('overlayCopyBtn');
+        const overlayCloseBtn = document.getElementById('overlayCloseBtn');
+        
+        // Event listener untuk tombol lihat (show overlay)
+        document.querySelectorAll('.show-overlay-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const paymentMethod = this.closest('.payment-method');
+                const method = paymentMethod.getAttribute('data-method');
+                const number = paymentMethod.getAttribute('data-number');
+                
+                // Set icon berdasarkan metode
+                if (method === 'dana') {
+                    overlayIcon.innerHTML = '<i class="fab fa-cc-visa" style="color: #00a3e0;"></i>';
+                    overlayTitle.textContent = 'DANA';
+                } else if (method === 'gopay') {
+                    overlayIcon.innerHTML = '<i class="fab fa-cc-mastercard" style="color: #00a64f;"></i>';
+                    overlayTitle.textContent = 'GoPay';
+                }
+                
+                // Set nomor
+                overlayNumber.textContent = number;
+                
+                // Tampilkan overlay
+                overlay.classList.add('active');
+            });
+        });
+        
+        // Event listener untuk tombol salin di overlay
+        overlayCopyBtn.addEventListener('click', function() {
+            const number = overlayNumber.textContent;
+            copyToClipboard(number);
+        });
+        
+        // Event listener untuk tombol tutup di overlay
+        overlayCloseBtn.addEventListener('click', function() {
+            overlay.classList.remove('active');
+        });
+        
+        // Tutup overlay ketika klik di luar konten
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+        
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(text) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = text;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Nomor berhasil disalin!');
+                overlay.classList.remove('active');
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+                showNotification('Gagal menyalin nomor');
+            });
+        }
+        
+        // Event listener untuk tombol salin biasa (QRIS)
+        document.querySelectorAll('.copy-btn:not(.show-overlay-btn)').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const text = this.getAttribute('data-text');
+                
+                if (text.includes('http')) {
+                    // Jika teks adalah URL, buka di tab baru
+                    window.open(text, '_blank');
+                    showNotification('Membuka QRIS...');
+                }
+            });
+        });
+        
+        // Event listener untuk memilih metode pembayaran
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Hapus kelas active dari semua metode
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('active');
+                });
+                
+                // Tambahkan kelas active ke metode yang diklik
+                this.classList.add('active');
+                
+                // Tampilkan QRIS jika metode QRIS dipilih
+                const qrisContainer = document.getElementById('qrisContainer');
+                if (this.getAttribute('data-method') === 'qris') {
+                    qrisContainer.style.display = 'block';
+                } else {
+                    qrisContainer.style.display = 'none';
+                }
+            });
+        });
+        
+        // Animasi tambahan untuk elemen saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animasi teks berjalan
+            const marquee = document.querySelector('.marquee p');
+            marquee.style.animationDuration = '15s';
+        });
+        
+        // Efek partikel saat mengklik tombol
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Buat efek partikel
+                for (let i = 0; i < 5; i++) {
+                    const particle = document.createElement('div');
+                    particle.style.position = 'absolute';
+                    particle.style.width = '6px';
+                    particle.style.height = '6px';
+                    particle.style.background = 'white';
+                    particle.style.borderRadius = '50%';
+                    particle.style.pointerEvents = 'none';
+                    
+                    const rect = this.getBoundingClientRect();
+                    particle.style.left = rect.left + rect.width/2 + 'px';
+                    particle.style.top = rect.top + rect.height/2 + 'px';
+                    
+                    document.body.appendChild(particle);
+                    
+                    // Animasi partikel
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = 2 + Math.random() * 3;
+                    const vx = Math.cos(angle) * speed;
+                    const vy = Math.sin(angle) * speed;
+                    
+                    let opacity = 1;
+                    const animateParticle = () => {
+                        opacity -= 0.02;
+                        particle.style.opacity = opacity;
+                        particle.style.transform = `translate(${vx * 10}px, ${vy * 10}px)`;
+                        
+                        if (opacity > 0) {
+                            requestAnimationFrame(animateParticle);
+                        } else {
+                            document.body.removeChild(particle);
+                        }
+                    };
+                    
+                    animateParticle();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
